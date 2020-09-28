@@ -1,11 +1,11 @@
 "use strict";
-
 var express = require("express");
 var mongoose = require("mongoose");
 var shortid = require("shortid");
 var dns = require("dns");
 
 var app = express();
+require("dotenv").config();
 
 // Basic Configuration
 var port = 8000;
@@ -15,8 +15,7 @@ mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
-
-app.use(cors());
+mongoose.set("useCreateIndex", true);
 
 app.use(
   express.urlencoded({
@@ -82,6 +81,6 @@ app.get("/api/shorturl/:shortid", function (req, res) {
   });
 });
 
-app.listen(port, function () {
-  console.log("Node.js listening ...");
+var listener = app.listen(port, function () {
+  console.log("Your app is listening on port " + listener.address().port);
 });
