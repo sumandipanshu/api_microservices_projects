@@ -1,35 +1,45 @@
 <!DOCTYPE html>
 
 <html>
+  <head>
+    <title>Request Header Parser</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
 
-   <head>
-      <title>Request Header Parser</title>
-      <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
-      <link href="style.css" rel="stylesheet" type="text/css">
-   </head>
+  <body>
+    <div class="container">
+      <h2>API Project: Request Header Parser Microservice</h2>
+      <h3>User Story:</h3>
+      1. I can get the IP address, preferred languages (from header
+      <code>Accept-Language</code>)<br />
+      and system infos (from header <code>User-Agent</code>) for my device.
 
-   <body>
-      <div class="container">
-        <h2>API Project: Request Header Parser Microservice</h2>
-        <h3>User Story: </h3>
-        1. I can get the IP address, preferred languages (from header <code>Accept-Language</code>)<br> and system infos (from header <code>User-Agent</code>) for my device.
+      <h3>Example Usage:</h3>
+      <p>
+        <a href="api/whoami">[base url]/api/whoami</a>
+      </p>
 
-        <h3>Example Usage:</h3>
-        <p>
-          <a href="api/whoami">[base url]/api/whoami</a>
-        </p>
-
-        <h3>Example Output:</h3>
-        <p>
-          <code>{"ipaddress":"::ffff:159.20.14.100","language":"en-US,en;q=0.5",<br>"software":"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:50.0) Gecko/20100101 Firefox/50.0"}</code>
-        </p>
-      </div>
-      <div class="footer">
-        <p>
-          By <a href="https://github.com/sumandipanshu/api_microservices_projects"></a>Dipanshu</a>
-        </p>
-      </div>
-   </body>
-
-
+      <h3>Example Output:</h3>
+      <p>
+        <code
+          >{"ipaddress":"::ffff:159.20.14.100","language":"en-US,en;q=0.5",<br />"software":"Mozilla/5.0
+          (X11; Ubuntu; Linux x86_64; rv:50.0) Gecko/20100101
+          Firefox/50.0"}</code
+        >
+      </p>
+    </div>
+    <div class="footer">
+      <p>
+        By
+        <a href="https://github.com/sumandipanshu/api_microservices_projects"
+          >Dipanshu</a
+        >
+      </p>
+    </div>
+  </body>
 </html>
