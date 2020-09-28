@@ -4,7 +4,11 @@
   "description": "Shortens the provided URL",
   "main": "index.js",
   "dependencies": {
-    "express": "^4.12.4"
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongodb": "^3.5.9",
+    "mongoose": "^5.9.27",
+    "shortid": "^2.2.15"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
