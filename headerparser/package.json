@@ -1,0 +1,23 @@
+{
+  "name": "headerparser",
+  "version": "0.0.1",
+  "description": "Parses the header of the requests and fetches the IP address, language and system info.",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.12.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sumandipanshu/api_microservices_projects/tree/master/headerparser"
+  },
+  "keywords": [
+    "node",
+    "express"
+  ],
+  "author": "Dipanshu",
+  "license": "MIT"
+}
