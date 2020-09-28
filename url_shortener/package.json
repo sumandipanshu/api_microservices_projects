@@ -1,0 +1,24 @@
+{
+  "name": "url_shortener",
+  "version": "0.0.1",
+  "description": "Shortens the provided URL",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.12.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sumandipanshu/api_microservices_projects/tree/master/url_shortener"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "url-shortener"
+  ],
+  "author": "Dipanshu",
+  "license": "MIT"
+}
