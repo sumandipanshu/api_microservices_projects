@@ -102,6 +102,71 @@ app.get("/api/exercise/users", function (req, res) {
     });
 });
 
+app.post(
+  "/api/exercise/add",
+  function (req, res, next) {
+    var id = req.body.userId;
+    var desc = req.body.description;
+    var dur = req.body.duration;
+    var date = req.body.date;
+    if (!date) {
+      date = new Date();
+    } else {
+      date = new Date(date);
+    }
+
+    Users.findById(id, function (err, user) {
+      if (err) res.send(err.message);
+      else {
+        if (user) {
+          try {
+            var exercise = Exercise({
+              description: desc,
+              duration: dur,
+              date: date,
+            });
+            exercise.validate(function (err) {
+              if (err) {
+                res.send(err.message);
+              } else {
+                user.log.push({
+                  description: exercise.description,
+                  duration: exercise.duration,
+                  date: exercise.date,
+                });
+                user.count = user.log.length;
+                user.save(function (err) {
+                  if (err) res.send(err.message);
+                  next();
+                });
+              }
+            });
+          } catch (e) {
+            res.send(e.message);
+          }
+        } else {
+          res.send("Unknown User Id");
+        }
+      }
+    });
+  },
+  function (req, res) {
+    var id = req.body.userId;
+    Users.findById(id, function (err, user) {
+      if (err) {
+        throw err;
+      }
+      res.json({
+        _id: user._id,
+        username: user.username,
+        duration: user.log[user.count - 1].duration,
+        description: user.log[user.count - 1].description,
+        date: user.log[user.count - 1].date,
+      });
+    });
+  }
+);
+
 // Not found middleware
 app.use((req, res, next) => {
   return next({ status: 404, message: "not found" });
