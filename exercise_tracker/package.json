@@ -1,0 +1,27 @@
+{
+  "name": "exercise_tracker",
+  "version": "0.0.1",
+  "description": "A REST API project, which adds user, displays list of users, adds exercise to user's log and displays it.",
+  "main": "index.js",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongodb": "^3.5.9",
+    "mongoose": "^5.9.27",
+    "body-parser": "^1.15.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sumandipanshu/api_microservices_projects/tree/master/exercise_tracker"
+  },
+  "keywords": [
+    "node",
+    "express"
+  ],
+  "author": "Dipanshu",
+  "license": "MIT"
+}
