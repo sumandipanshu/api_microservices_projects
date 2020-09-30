@@ -167,6 +167,75 @@ app.post(
   }
 );
 
+app.get(
+  "/api/exercise/log",
+  function (req, res, next) {
+    if (!req.query) {
+      res.send("not found");
+    } else {
+      if (!req.query.userId) {
+        res.send("Unknown User Id");
+      } else {
+        var a = req.query.from,
+          b = req.query.to;
+        var limit = req.query.limit;
+        if (a && isValidDate(a)) {
+          res.send("`Invalid Date` in parameter `from`");
+        }
+        if (b && isValidDate(b)) {
+          res.send("`Invalid Date` in parameter `to`");
+        }
+        if (limit && isNaN(limit)) {
+          res.send("Parameter `limit` requires a Number input");
+        }
+        next();
+      }
+    }
+  },
+  function (req, res) {
+    var userId = req.query.userId;
+
+    Users.findById(userId, function (err, user) {
+      if (err) res.send(err.message);
+      else if (user == null) res.send("User not found");
+      else {
+        let results = user.log;
+
+        let fromDate = new Date(req.query.from);
+        let toDate = new Date(req.query.to);
+        let limit = Number(req.query.limit);
+
+        //check if to is defined
+        if (isValidDate(toDate)) {
+          results = results.filter(
+            (item) =>
+              new Date(item.date) >= fromDate && new Date(item.date) <= toDate
+          );
+          //check if just from defined
+        } else if (isValidDate(fromDate)) {
+          results = results.filter((item) => new Date(item.date) >= fromDate);
+        }
+        //apply limit if defined and applicable
+        if (!isNaN(limit) && results.length > limit) {
+          results = results.slice(0, limit);
+        }
+        res.json({
+          _id: user._id,
+          username: user.username,
+          count: results.length,
+          log: results.map((log) => {
+            return (({ description, duration, date }) => ({
+              description,
+              duration,
+              date,
+            }))(log);
+          }),
+        });
+      }
+    });
+  }
+);
+
 // Not found middleware
 app.use((req, res, next) => {
   return next({ status: 404, message: "not found" });
