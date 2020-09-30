@@ -88,6 +88,20 @@ app.post(
   }
 );
 
+app.get("/api/exercise/users", function (req, res) {
+  Users.find()
+    .select({ username: 1 })
+    .exec(function (err, users) {
+      if (err) res.send(err.message);
+      else
+        res.json(
+          users.map((user) => {
+            return (({ _id, username }) => ({ _id, username }))(user);
+          })
+        );
+    });
+});
+
 // Not found middleware
 app.use((req, res, next) => {
   return next({ status: 404, message: "not found" });
